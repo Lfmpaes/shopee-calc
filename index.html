@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f26b38" />
+    <title>Calculadora Shopee</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <p class="eyebrow">TANGERINA CÓSMICA</p>
+        <h1>Calculadora Shopee</h1>
+        <p class="intro">Descubra o preço certo sem fazer conta de porcentagem.</p>
+      </header>
+
+      <section class="calculator" aria-label="Calculadora de preço">
+        <div class="mode-switch" role="tablist" aria-label="Tipo de cálculo">
+          <button class="mode-button is-active" id="price-tab" type="button" role="tab" aria-selected="true" aria-controls="price-panel">Quanto cobrar?</button>
+          <button class="mode-button" id="receive-tab" type="button" role="tab" aria-selected="false" aria-controls="receive-panel">Quanto vou receber?</button>
+        </div>
+
+        <div id="price-panel" role="tabpanel" aria-labelledby="price-tab">
+          <div class="field">
+            <label for="target-value">Quanto cada item deve render?</label>
+            <div class="currency-input"><span>R$</span><input id="target-value" inputmode="decimal" autocomplete="off" placeholder="Ex.: 35,00" aria-describedby="target-help" /></div>
+            <small id="target-help">O valor líquido que você quer receber por unidade.</small>
+          </div>
+        </div>
+
+        <div id="receive-panel" role="tabpanel" aria-labelledby="receive-tab" hidden>
+          <div class="field">
+            <label for="listed-value">Preço anunciado por item</label>
+            <div class="currency-input"><span>R$</span><input id="listed-value" inputmode="decimal" autocomplete="off" placeholder="Ex.: 48,75" aria-describedby="listed-help" /></div>
+            <small id="listed-help">O preço que aparece no anúncio da Shopee.</small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="quantity">Quantidade de itens no pedido</label>
+          <input id="quantity" class="quantity-input" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="1" />
+        </div>
+
+        <fieldset class="order-fee">
+          <legend>Taxa por pedido</legend>
+          <label class="toggle-row" for="order-fee-enabled">
+            <span>Incluir taxa de proteção/devolução</span>
+            <input id="order-fee-enabled" type="checkbox" checked />
+          </label>
+          <div class="fee-value">
+            <label for="order-fee-value">Valor da taxa</label>
+            <div class="currency-input"><span>R$</span><input id="order-fee-value" inputmode="decimal" autocomplete="off" value="0,49" /></div>
+          </div>
+        </fieldset>
+
+        <p id="form-message" class="form-message" aria-live="polite">Informe um valor para começar.</p>
+
+        <section class="result-card" aria-live="polite" aria-atomic="true">
+          <p class="result-label" id="main-result-label">Preço recomendado por item</p>
+          <p class="main-result" id="main-result">—</p>
+          <div class="result-grid">
+            <div><span id="total-label">Total do pedido</span><strong id="total-value">—</strong></div>
+            <div><span id="net-label">Você receberá</span><strong id="net-value">—</strong></div>
+          </div>
+        </section>
+
+        <details class="breakdown">
+          <summary>Ver detalhamento das taxas</summary>
+          <dl>
+            <div><dt>Taxa da Shopee (20%)</dt><dd id="percentage-fee">—</dd></div>
+            <div><dt>Taxa fixa por item (R$ 4,00)</dt><dd id="item-fee">—</dd></div>
+            <div><dt>Taxa por pedido</dt><dd id="order-fee">—</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <footer>Taxas usadas: 20% sobre a venda + R$ 4,00 por item.</footer>
+    </main>
+    <script src="calculator.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
